@@ -12,16 +12,11 @@ class AlertsController < ApplicationController
   end
 
   def destroy
-    begin
-      # Find the alert by its ID belonging to the current user
-      alert = current_user.alerts.find(params[:id])
-      if alert.destroy
-        render json: { message: 'Alert deleted' }, status: :ok
-      else
-        render json: { errors: 'Failed to delete alert' }, status: :unprocessable_entity
-      end
-    rescue ActiveRecord::RecordNotFound
-      render json: { errors: 'Alert not found' }, status: :not_found
+    alert = current_user.alerts.find_by(id: params[:id])
+    if alert && alert.destroy
+      render json: { message: 'Alert deleted' }, status: :ok
+    else
+      render json: { errors: 'Failed to delete alert' }, status: :unprocessable_entity
     end
   end
 

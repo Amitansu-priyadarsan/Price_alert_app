@@ -17,6 +17,10 @@ gem 'sidekiq', '~> 6.2'
 gem 'mailgun-ruby', '~> 1.2'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sendgrid-ruby'
+gem 'will_paginate', '~> 3.1.0'
+gem 'sidekiq-cron', '~> 1.1' 
+
+
 
 group :development, :test do
   gem 'pry'
